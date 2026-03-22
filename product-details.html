@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Product Details</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <a href="products.html">Back</a>
+</header>
+
+<div id="details" style="padding:40px;"></div>
+
+<script>
+let id = new URLSearchParams(window.location.search).get("id");
+let product = products.find(p=>p.id == id);
+
+document.getElementById("details").innerHTML = `
+<h1>${product.name}</h1>
+<img src="${product.img}" width="300">
+<p>Price: ₹${product.price}</p>
+<button onclick="addToCart(${product.id})">Add to Cart</button>
+`;
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

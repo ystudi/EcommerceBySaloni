@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cart</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+</header>
+
+<h1 style="text-align:center;">Your Cart</h1>
+
+<div id="cart-items" class="grid"></div>
+
+<h2 id="total" style="text-align:center;"></h2>
+
+<div style="text-align:center;">
+  <button onclick="go('checkout.html')">Proceed to Checkout</button>
+</div>
+
+<script>
+function loadCart(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let container = document.getElementById("cart-items");
+  let total = 0;
+
+  container.innerHTML = "";
+
+  cart.forEach((id,index)=>{
+    let product = products.find(p=>p.id===id);
+    total += product.price;
+
+    container.innerHTML += `
+      <div class="card">
+        <h3>${product.name}</h3>
+        <p>₹${product.price}</p>
+        <button onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText = "Total: ₹" + total;
+}
+
+function removeItem(index){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.splice(index,1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+loadCart();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

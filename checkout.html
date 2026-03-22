@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Checkout</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <a href="index.html">Home</a>
+</header>
+
+<h1 style="text-align:center;">Checkout</h1>
+
+<form class="checkout-form" onsubmit="placeOrder(event)">
+
+<input type="text" placeholder="Full Name" required>
+<input type="text" placeholder="Address" required>
+<input type="text" placeholder="City" required>
+<input type="text" placeholder="Pincode" required>
+<input type="text" placeholder="Card Number" required>
+
+<button type="submit">Place Order</button>
+
+</form>
+
+<script>
+function placeOrder(e){
+  e.preventDefault();
+  alert("Order Placed Successfully!");
+  localStorage.removeItem("cart");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
